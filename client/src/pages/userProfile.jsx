@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchUserProfile, updateUserProfile } from "../api"; // Import the functions from api.jsx
+import { fetchUserProfile, updateUserProfile } from "../api/index"; // Import the functions from api.jsx
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState({

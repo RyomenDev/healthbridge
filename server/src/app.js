@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
-import admin from "../firebase-admin-config.js";
+import admin from "./conf/firebase-admin-config.js";
 
 const app = express();
 app.use(bodyParser.json());

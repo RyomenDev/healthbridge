@@ -1,5 +1,9 @@
 import axios from "axios";
-const API_URL = "http://localhost:3001/api/auth";
+import conf from "../conf/conf.jsx";
+
+const SERVER_API_URL = conf.SERVER_API_URL;
+const API_URL = `${SERVER_API_URL}/auth`;
+
 // Function to call the protected API
 export const LoginUser = async (token) => {
   try {

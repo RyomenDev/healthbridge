@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useStripe } from "@stripe/react-stripe-js";
-import { createPaymentIntent } from "../../api";
+import { createPaymentIntent } from "../api/index.jsx";
 
 function PaymentPage() {
   const stripe = useStripe();

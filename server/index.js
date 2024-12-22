@@ -1,15 +1,13 @@
 import { app } from "./src/app.js";
-import dotenv from "dotenv";
 import connectDB from "./src/db/index.js";
 
-// Load environment variables from .env file
-dotenv.config({ path: "./env" });
+import conf from "./src/conf/conf.js";
 
+const PORT = conf.PORT || 5000;
 // Connect to MongoDB and start the server
 const startServer = async () => {
   try {
     await connectDB();
-    const PORT = process.env.PORT || 3001;
     app.listen(PORT, () => {
       console.log(`⚙️ Server is running at port: ${PORT}`);
     });

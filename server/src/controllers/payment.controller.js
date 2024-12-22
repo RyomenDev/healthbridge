@@ -1,9 +1,9 @@
-import conf from "../../conf.js";
+import conf from "../conf/conf.js";
 import Stripe from "stripe";
 
 const stripe = Stripe(conf.STRIPE_SECRET_KEY);
 
-console.log("payment controller");
+// console.log("payment controller");
 
 const YOUR_DOMAIN = "http://localhost:5173"; // Replace with your actual domain
 

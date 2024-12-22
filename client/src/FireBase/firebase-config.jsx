@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import firebaseConf from "../firebase-conf"; // Import the firebaseConf
+import firebaseConf from "../conf/firebase-conf.jsx"; // Import the firebaseConf
 
 // Use the firebaseConf for configuration
 const firebaseConfig = {

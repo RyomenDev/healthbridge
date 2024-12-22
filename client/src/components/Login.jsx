@@ -1,8 +1,8 @@
 // src/Login.jsx
 import { auth, googleProvider } from "../FireBase/firebase-config.jsx";
 import { signInWithPopup } from "firebase/auth";
-import { LoginUser } from "../api"; // Import the API call function
 import { useDispatch } from "react-redux";
+import { LoginUser } from "../api/index.jsx";
 import { login as authLogin } from "../store/authSlice";
 import { useNavigate } from "react-router-dom";
 import hospitalImage from "../assets/icon.png";

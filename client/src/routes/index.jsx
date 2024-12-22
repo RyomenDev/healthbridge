@@ -8,9 +8,9 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import ProfilePage from "../pages/userProfile";
 import Premier from "../pages/Payment";
-import PaymentSuccess from "../pages/PaymentSuccess";
-import PaymentCancel from "../pages/PaymentCancel";
-import RetellAi from "../RetellAi/index.js";
+import PaymentSuccess from "../Stripe/PaymentSuccess.jsx";
+import PaymentCancel from "..//Stripe/PaymentCancel";
+// import RetellAi from "../RetellAi/RetellAIConnect";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +22,7 @@ const router = createBrowserRouter(
         <Route path="premier" element={<Premier />} />
         <Route path="payment-success" element={<PaymentSuccess />} />
         <Route path="payment-cancel" element={<PaymentCancel />} />
-        <Route path="chatbot" element={<RetellAi />} />
+        {/* <Route path="chatbot" element={<RetellAi />} /> */}
       </Route>
     </Route>
   )

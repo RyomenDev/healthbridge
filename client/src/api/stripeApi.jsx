@@ -1,5 +1,9 @@
 import axios from "axios";
-const API_URL = "http://localhost:3001/api/premier";
+import conf from "../conf/conf.jsx";
+
+const SERVER_API_URL = conf.SERVER_API_URL;
+const API_URL = `${SERVER_API_URL}/premier`;
+
 
 const createPaymentIntent = async (amount) => {
   try {

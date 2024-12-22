@@ -4,7 +4,7 @@ import { router } from "./routes";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor } from "./store/store.js";
 import { Provider, useDispatch } from "react-redux";
-// import { jwtDecode } from "jwt-decode";
+import { LoginUser } from "./api/index";
 import store from "./store/store.js";
 import { login } from "./store/authSlice";
 
@@ -13,7 +13,8 @@ function App() {
 
   useEffect(() => {
     const token =
-      localStorage.getItem("token") || sessionStorage.getItem("token");
+      localStorage.getItem("firebase_token") ||
+      sessionStorage.getItem("firebase_token");
 
     // if (token) {
     //   try {

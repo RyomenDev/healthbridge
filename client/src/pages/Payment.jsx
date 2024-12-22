@@ -1,7 +1,7 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import PaymentForm from "../components/Stripe/PaymentForm";
-import stripeConf from "../stripe-conf";
+import PaymentForm from "../Stripe/PaymentForm";
+import stripeConf from "../conf/stripe-conf";
 
 const stripePromise = loadStripe(`${stripeConf.STRIPE_SECRET}`);
 

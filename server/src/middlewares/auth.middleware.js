@@ -1,4 +1,4 @@
-import admin from "../../firebase-admin-config.js";
+import admin from "../conf/firebase-admin-config.js";
 
 // Middleware to verify Firebase ID Token
 export async function verifyToken(req, res, next) {
@@ -10,10 +10,10 @@ export async function verifyToken(req, res, next) {
   }
 
   try {
-    console.log("Verifying token...");
+    // console.log("Verifying token...");
     const decodedToken = await admin.auth().verifyIdToken(idToken); // Verify Firebase ID token
     req.user = decodedToken; // Store decoded token in request for further use
-    console.log("Token verified, user authenticated");
+    // console.log("Token verified, user authenticated");
     next(); // Proceed to the next middleware or route handler
   } catch (error) {
     console.log("Unauthorized: Invalid token", error);

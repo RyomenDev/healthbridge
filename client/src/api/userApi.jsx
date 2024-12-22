@@ -1,9 +1,10 @@
 import axios from "axios";
+import conf from "../conf/conf.jsx";
 import { auth } from "../FireBase/firebase-config.jsx";
 import { getIdToken } from "firebase/auth";
 
-// Base URL of your backend API
-const API_URL = "http://localhost:3001/api/user";
+const SERVER_API_URL = conf.SERVER_API_URL;
+const API_URL = `${SERVER_API_URL}/user`;
 
 // Function to get the Firebase token (this can be from the user's session or Firebase Auth)
 const getFirebaseToken = async () => {
@@ -55,7 +56,7 @@ export const fetchUserProfile = async () => {
 // };
 
 export const updateUserProfile = async (userData) => {
-//   console.log("Updating profile with data:", userData);
+  //   console.log("Updating profile with data:", userData);
 
   try {
     const token = await getFirebaseToken(); // Get Firebase token
@@ -76,4 +77,3 @@ export const updateUserProfile = async (userData) => {
     throw error;
   }
 };
-
