@@ -10,6 +10,7 @@ import ProfilePage from "../pages/userProfile";
 import Premier from "../pages/Payment";
 import PaymentSuccess from "../pages/PaymentSuccess";
 import PaymentCancel from "../pages/PaymentCancel";
+import RetellAi from "../RetellAi/index.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
         <Route path="premier" element={<Premier />} />
         <Route path="payment-success" element={<PaymentSuccess />} />
         <Route path="payment-cancel" element={<PaymentCancel />} />
+        <Route path="chatbot" element={<RetellAi />} />
       </Route>
     </Route>
   )

@@ -1,9 +1,9 @@
 const MainData = {
   header: {
-    logo: "https://www.apollohospitals.com/wp-content/themes/apollohospitals/assets-v3/images/logo.svg",
+    logo: "https://png.pngtree.com/png-clipart/20230913/original/pngtree-healthcare-medical-center-diagnostic-centre-hospital-and-treatment-service-logo-design-png-image_11080637.png",
     contactOptions: [
-      { label: "Emergency", number: "1066" },
-      { label: "Apollo Lifeline", number: "18605001066" },
+      //   { label: "Emergency", number: "XX00" },
+      { label: "HealthBridge", number: "1800 XXX XXX" },
     ],
     languages: [
       { code: "en", name: "English" },
@@ -15,14 +15,24 @@ const MainData = {
   },
   images: [
     {
-      src: "https://cdn.apollohospitals.com/dev-apollohospitals/2024/12/emergency_banner_web-674e9396b809b.jpg",
+      src: "https://servisource.ie/wp-content/uploads/2021/05/3d-rendering-hospital-interior-with-lots-copy-space.jpg",
       alt: "Emergency Banner",
-      link: "tel:1066",
+      link: "tel:XX00",
     },
     {
-      src: "https://cdn.apollohospitals.com/dev-apollohospitals/2024/12/proton_cancer_banner_web-674e93cac64aa.jpg",
+      src: "https://wallpaperaccess.com/full/1282835.jpg",
       alt: "Proton Banner",
-      link: "https://proton.apollohospitals.com/proton-therapy/?utm_campaign=proton_cancer&utm_source=home_banner&utm_medium=digital",
+      link: "#",
+    },
+    {
+      src: "https://cdn-images-1.medium.com/max/1600/1*8O-jeTVBIduBPSKj_Yo5nQ.jpeg",
+      alt: "Proton Banner",
+      link: "#",
+    },
+    {
+      src: "https://i.pinimg.com/736x/db/c8/9a/dbc89a5b27c6ac03dd10f96480044a4f.jpg",
+      alt: "Proton Banner",
+      link: "#",
     },
   ],
   actionOptions: [
@@ -50,7 +60,7 @@ const MainData = {
   motive: {
     title: "Why Choose HealthBridge?",
     description:
-      "Established by Dr. Prathap C. Reddy in 1983, HealthBridge has a robust presence across the healthcare ecosystem. From routine wellness & preventive healthcare to innovative life-saving treatments and diagnostic services, Apollo Hospitals has touched more than 200 million lives from over 150 countries.",
+      "Established by xxxxx in xxxxx, HealthBridge has a robust presence across the healthcare ecosystem. From routine wellness & preventive healthcare to innovative life-saving treatments and diagnostic services, Apollo Hospitals has touched more than 200 million lives from over 150 countries.",
     points: [
       {
         title: "Largest private healthcare network of Hospitals",
@@ -90,7 +100,7 @@ const MainData = {
       },
     ],
     imageSrc:
-      "https://cdn.apollohospitals.com/apollohospitals/apollo-prohealth/ah/why-choose.jpg",
+      "https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   //   footer: {
   //     // Footer data can be added here if needed

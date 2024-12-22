@@ -41,11 +41,7 @@ const Header = () => {
           className="flex items-center w-auto justify-start cursor-pointer"
           onClick={handleLogoClick}
         >
-          <img
-            src={logo}
-            alt="Apollo Hospitals Logo"
-            className="w-auto h-12 md:h-16"
-          />
+          <img src={logo} alt="HealthBridge" className="w-auto h-12 md:h-16" />
         </div>
 
         {/* Hamburger Icon (Mobile) */}
@@ -62,7 +58,7 @@ const Header = () => {
         {/* Navbar (Sliding from Left) */}
         <div
           ref={navbarRef}
-          className={`fixed top-0 left-0 w-64 bg-slate-100 text-black h-full transform transition-transform duration-300 ease-in-out border-x-4 border-blue-100 z-50 ${
+          className={`fixed top-0 left-0 w-64 bg-gradient-to-r from-blue-300 to-slate-100 text-black h-full transform transition-transform duration-300 ease-in-out border-x-1 border-blue-100  z-50 ${
             isNavbarOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >

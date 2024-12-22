@@ -9,6 +9,16 @@ const HomePage = () => {
 
   return (
     <div>
+      <div className="flex flex-col items-center justify-center ">
+        <div className="text-5xl font-extrabold mb-4">
+          Health<span className="text-yellow-300">Bridge</span>
+        </div>
+        <p className="text-lg font-medium max-w-md text-center">
+          A <span className="italic">bridge</span> between patients and
+          hospitals for better healthcare.
+        </p>
+      </div>
+
       <Carousel images={images} />
       {/* Action Options Section */}
       <div className="bg-gray-100 py-12">

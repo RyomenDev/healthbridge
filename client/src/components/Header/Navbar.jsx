@@ -16,9 +16,9 @@ const NavBar = ({ logo, setIsNavbarOpen }) => {
     { name: "Records", slug: "#", active: true },
     { name: "Transaction History", slug: "#", active: true },
     { name: "Medicines", slug: "#", active: true },
-    { name: "Consultation", slug: "#", active: true },
+    // { name: "Consultation", slug: "#", active: true },
     { name: "Enquiry", slug: "#", active: true },
-    { name: "Payment", slug: "#", active: true },
+    // { name: "Payment", slug: "#", active: true },
   ];
 
   const authItems = [
@@ -51,7 +51,7 @@ const NavBar = ({ logo, setIsNavbarOpen }) => {
       <div className="text-2xl font-semibold black">
         Hello, {userName || "Guest"}
       </div>
-      {authStatus && <div className="text-sm text-gray-300">Welcome back!</div>}
+      {authStatus && <div className="text-sm text-gray">Welcome back!</div>}
       {/* Main Navigation Items */}
       {navItems.map(
         (item) =>
