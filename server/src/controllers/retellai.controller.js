@@ -15,7 +15,7 @@ const RetellAiController = async (req, res) => {
   if (metadata) {
     payload.metadata = metadata;
   }
-
+  //
   if (retell_llm_dynamic_variables) {
     payload.retell_llm_dynamic_variables = retell_llm_dynamic_variables;
   }
