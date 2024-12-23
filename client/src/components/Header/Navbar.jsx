@@ -1,40 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LogoutBtn from "./LogoutBtn";
+import { navItems, authItems } from "../../Data/navBarData"; 
 
 const NavBar = ({ logo, setIsNavbarOpen }) => {
-  //   console.log("setIsNavbarOpen", setIsNavbarOpen);
-
   const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);
   const userData = useSelector((state) => state.auth.userData);
   const userName = userData?.name;
 
-  const navItems = [
-    { name: "Premier", slug: "/premier", active: true },
-    { name: "Home", slug: "/", active: true },
-    { name: "Records", slug: "#", active: true },
-    { name: "Transaction History", slug: "#", active: true },
-    { name: "Medicines", slug: "#", active: true },
-    // { name: "Consultation", slug: "#", active: true },
-    { name: "Enquiry", slug: "#", active: true },
-    // { name: "Payment", slug: "#", active: true },
-  ];
-
-  const authItems = [
-    { name: "Support", slug: "#", active: true },
-    { name: "View Profile", slug: "/userProfile", active: true },
-    { name: "Login", slug: "/login", active: !authStatus },
-    {
-      name: "Logout",
-      slug: "/logout",
-      active: authStatus,
-      component: <LogoutBtn />,
-    },
-  ];
-
   return (
-    <div className="flex flex-col items-start p-4 space-y-4 ">
+    <div className="flex flex-col items-start p-4 space-y-4">
       {/* Close Button */}
       <button
         onClick={() => setIsNavbarOpen(false)}
@@ -52,6 +28,7 @@ const NavBar = ({ logo, setIsNavbarOpen }) => {
         Hello, {userName || "Guest"}
       </div>
       {authStatus && <div className="text-sm text-gray">Welcome back!</div>}
+
       {/* Main Navigation Items */}
       {navItems.map(
         (item) =>
@@ -72,7 +49,7 @@ const NavBar = ({ logo, setIsNavbarOpen }) => {
 
       {/* Auth & Support Items */}
       <div className="absolute bottom-0">
-        {authItems.map(
+        {authItems(authStatus, LogoutBtn).map(
           (item) =>
             item.active && (
               <div key={item.name}>

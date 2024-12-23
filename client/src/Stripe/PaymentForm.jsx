@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useStripe } from "@stripe/react-stripe-js";
 import { createPaymentIntent } from "../api/index.jsx";
+import PremiumData from "../Data/PremiumData.jsx";
+
+const { IMAGES, FEATURES } = PremiumData;
 
 function PaymentPage() {
   const stripe = useStripe();
@@ -17,7 +20,6 @@ function PaymentPage() {
       const response = await createPaymentIntent(100);
       const { url } = response.data;
 
-      // Redirect to Stripe Checkout
       if (url) {
         window.location.href = url;
       } else {
@@ -32,73 +34,87 @@ function PaymentPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg border border-gray-300 p-8">
-        <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-6">
-          Become a Premium Member
-        </h2>
-        <p className="text-lg text-gray-600 mb-4 text-center">
-          Unlock exclusive features tailored for doctors to make your practice
-          more efficient and seamless.
-        </p>
-        <ul className="list-disc space-y-3 pl-6 text-gray-700 mb-6">
-          <li>Unlimited access to save and manage patient data securely.</li>
-          <li>
-            Advanced search tools for medicines, prescriptions, and patient
-            history.
-          </li>
-          <li>Customizable patient treatment plans and reminders.</li>
-          <li>Seamless integration with top medical tools and platforms.</li>
-          <li>Priority customer support for all your queries and issues.</li>
-        </ul>
-        <p className="text-lg font-semibold text-center text-gray-800 mb-6">
-          Invest in the tools you need to deliver exceptional care and grow your
-          practice.
-        </p>
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-50 to-blue-100">
+      <div className="relative w-full h-64 md:h-96">
+        <img
+          src={IMAGES.background}
+          alt="Premium Membership"
+          className="w-full h-full object-cover rounded-b-3xl shadow-md"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-900 via-transparent to-transparent flex items-center justify-center text-center text-blue-900">
+          <h1 className="text-4xl md:text-6xl font-extrabold">
+            Unlock Premium Membership
+          </h1>
+          <p className="mt-4 text-lg md:text-2xl font-medium">
+            Elevate your practice with exclusive tools and features.
+          </p>
+        </div>
+      </div>
 
-        <form onSubmit={handleSubmit} className="text-center">
-          <button
-            type="submit"
-            disabled={!stripe || loading}
-            className={`w-full py-3 px-6 text-lg font-semibold rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-              loading ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-          >
-            {loading ? "Processing..." : "Become a Premium Member Now"}
-          </button>
-        </form>
+      <div className="flex-grow container mx-auto px-6 md:px-12 py-8">
+        <div className="bg-slate-100 rounded-3xl shadow-xl p-8 md:p-12">
+          <h2 className="text-3xl font-bold text-center text-blue-900">
+            Exclusive Features You’ll Get
+          </h2>
 
-        {paymentStatus && (
-          <div className="mt-6 text-center">
-            <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-              Payment Status:{" "}
-              <span
-                className={`${
-                  paymentStatus === "Success"
-                    ? "text-green-500"
-                    : "text-red-500"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 bg-blue-100">
+            {FEATURES.map((feature, index) => (
+              <div
+                key={index}
+                className="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 text-center"
+              >
+                <img
+                  src={feature.img}
+                  alt={feature.title}
+                  className="h-32 w-32 mx-auto mb-4"
+                />
+                <h3 className="text-xl font-semibold text-gray-800">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 mt-2">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <form onSubmit={handleSubmit}>
+              <button
+                type="submit"
+                disabled={!stripe || loading}
+                className={`py-4 px-10 rounded-full text-lg font-semibold text-white shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 ${
+                  loading
+                    ? "bg-blue-400 cursor-not-allowed"
+                    : "bg-blue-600 hover:bg-blue-700"
                 }`}
               >
-                {paymentStatus}
-              </span>
-            </h3>
-            {paymentStatus === "Failed" && (
-              <p className="text-red-500">{error}</p>
-            )}
-            {paymentStatus === "Success" && (
-              <>
-                <p className="text-green-500 font-medium mb-2">
-                  Payment Successful! Welcome to Premium Membership.
-                </p>
-                <div className="p-4 bg-gray-100 rounded-lg">
-                  <p className="font-semibold text-gray-700">
-                    Invoice #: INV-{Math.floor(Math.random() * 100000)}
-                  </p>
-                </div>
-              </>
+                {loading ? "Processing..." : "Become a Premium Member Now"}
+              </button>
+            </form>
+
+            {paymentStatus && (
+              <div className="mt-8">
+                <h3
+                  className={`text-2xl font-bold ${
+                    paymentStatus === "Success"
+                      ? "text-green-500"
+                      : "text-red-500"
+                  }`}
+                >
+                  Payment Status: {paymentStatus}
+                </h3>
+                {paymentStatus === "Failed" && (
+                  <p className="text-red-500 mt-4">{error}</p>
+                )}
+                {paymentStatus === "Success" && (
+                  <div className="p-4 mt-4 bg-gray-100 rounded-lg text-gray-700">
+                    <p className="font-semibold">Payment Successful!</p>
+                    <p>Invoice #: INV-{Math.floor(Math.random() * 100000)}</p>
+                  </div>
+                )}
+              </div>
             )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
