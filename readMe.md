@@ -157,6 +157,7 @@ ________________________________________
 
 ## Project Folder Structure
 
+```
 project-root/
 ├── client/
 │   ├── public/
@@ -237,7 +238,7 @@ project-root/
 │   ├── .gitignore
 │   ├── package.json
 │   └── README.md
-
+```
 Key Points:
 •	client/: Contains all the client-side code for your React application.
 •	public/: Stores static files accessible by the browser.
@@ -263,7 +264,7 @@ Key Points:
 •	package.json: Lists project dependencies and scripts.
 •	README.md: Provides project description and instructions.
 
-
+```
 ├── server/
 │   ├── conf/
 │   │   ├── conf.js
@@ -299,7 +300,7 @@ Key Points:
 │   ├── .gitignore
 │   ├── package.json
 │   └── README.md
-
+```
 
 Explanation:
 •	server/: The root directory of the server-side code.
