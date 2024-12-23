@@ -19,14 +19,14 @@ function PaymentCancel() {
         </p>
 
         <div className="flex justify-center gap-4">
-          <Link
-            to="/membership/benefits"
+          {/* <Link
+            to="/premier"
             className="py-3 px-6 text-lg font-semibold rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             View Membership Benefits
-          </Link>
+          </Link> */}
           <Link
-            to="/membership/upgrade"
+            to="/premier"
             className="py-3 px-6 text-lg font-semibold rounded-lg text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
           >
             Try Again

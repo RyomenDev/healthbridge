@@ -22,7 +22,7 @@ const NavBar = ({ logo, setIsNavbarOpen }) => {
   ];
 
   const authItems = [
-    { name: "Support", slug: "/support", active: true },
+    { name: "Support", slug: "#", active: true },
     { name: "View Profile", slug: "/userProfile", active: true },
     { name: "Login", slug: "/login", active: !authStatus },
     {

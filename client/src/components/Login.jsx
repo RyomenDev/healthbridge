@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { LoginUser } from "../api/index.jsx";
 import { login as authLogin } from "../store/authSlice";
 import { useNavigate } from "react-router-dom";
-import hospitalImage from "../assets/icon.png";
+import hospitalImage from "../assets/HospitalImage.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ const Login = () => {
       >
         <div className="flex items-center justify-center w-full h-full bg-black opacity-40">
           <h1 className="text-white text-4xl font-semibold">
-            Welcome to Our Hospital
+            Welcome to Our HealthBridge
           </h1>
         </div>
       </div>

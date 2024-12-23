@@ -14,7 +14,7 @@ function PaymentPage() {
     setError(null);
 
     try {
-      const response = await createPaymentIntent(10000);
+      const response = await createPaymentIntent(100);
       const { url } = response.data;
 
       // Redirect to Stripe Checkout

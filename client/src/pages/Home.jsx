@@ -9,7 +9,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <div className="flex flex-col items-center justify-center ">
+      <div className="flex flex-col items-center justify-center bg-blue-100 ">
         <div className="text-5xl font-extrabold mb-4">
           Health<span className="text-yellow-300">Bridge</span>
         </div>

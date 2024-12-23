@@ -4,6 +4,9 @@ import conf from "../conf/retellAi-conf.jsx";
 import { registerCall } from "../api/index.jsx";
 import { FaPhoneAlt } from "react-icons/fa";
 
+import activeBot from "../assets/activeBot.png";
+import inActiveBot from "../assets/inActiveBot.png";
+
 const RETELL_AI_AGENT_ID = conf.RETELL_AI_AGENT_ID;
 const retellWebClient = new RetellWebClient();
 
@@ -81,14 +84,26 @@ const RetellAi = () => {
       <div className="absolute bottom-8 right-8">
         <button
           onClick={toggleConversation}
-          className={`py-3 px-6 flex items-center justify-center gap-2 rounded-lg text-white font-semibold transition-all duration-300 ${
+          className={`py-3 px-6 flex items-center justify-center gap-4 rounded-lg text-white font-semibold transition-all duration-300 transform shadow-lg hover:scale-105 ${
             isCalling
               ? "bg-red-500 hover:bg-red-600"
               : "bg-green-500 hover:bg-green-600"
-          } shadow-lg transform hover:scale-105`}
+          }`}
         >
+          {/* Icon */}
           <FaPhoneAlt className="text-lg" />
-          <span>{isCalling ? "Stop" : "Contact us"}</span>
+
+          {/* Image Indicator */}
+          <span
+            className="w-10 h-10 border border-gray-200 rounded-full overflow-hidden"
+            title={isCalling ? "Active Bot" : "Inactive Bot"}
+          >
+            <img
+              src={isCalling ? activeBot : inActiveBot}
+              alt={isCalling ? "Active Bot" : "Inactive Bot"}
+              className="w-full h-full object-cover"
+            />
+          </span>
         </button>
       </div>
     </>
