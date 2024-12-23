@@ -1,9 +1,7 @@
-
-
 export const navItems = [
   { name: "Premier", slug: "/premier", active: true },
   { name: "Home", slug: "/", active: true },
-  { name: "Records", slug: "#", active: true },
+  { name: "Records", slug: "/records", active: true },
   { name: "Transaction History", slug: "#", active: true },
   { name: "Medicines", slug: "#", active: true },
   { name: "Enquiry", slug: "#", active: true },

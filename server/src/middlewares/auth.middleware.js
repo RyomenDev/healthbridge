@@ -11,10 +11,10 @@ export async function verifyToken(req, res, next) {
 
   try {
     // console.log("Verifying token...");
-    const decodedToken = await admin.auth().verifyIdToken(idToken); // Verify Firebase ID token
+    const decodedToken = await admin.auth().verifyIdToken(idToken);
     req.user = decodedToken; // Store decoded token in request for further use
     // console.log("Token verified, user authenticated");
-    next(); // Proceed to the next middleware or route handler
+    next();
   } catch (error) {
     console.log("Unauthorized: Invalid token", error);
     return res.status(401).send("Unauthorized: Invalid token");

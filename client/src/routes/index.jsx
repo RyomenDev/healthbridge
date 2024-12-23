@@ -10,7 +10,7 @@ import ProfilePage from "../pages/userProfile";
 import Premier from "../pages/Payment";
 import PaymentSuccess from "../Stripe/PaymentSuccess.jsx";
 import PaymentCancel from "../Stripe/PaymentCancel";
-// import PaymentForm from "../Stripe/PaymentForm";
+import PatientsRecords from "../pages/PatientsRecords";
 // import RetellAi from "../RetellAi/RetellAIConnect";
 
 const router = createBrowserRouter(
@@ -23,6 +23,7 @@ const router = createBrowserRouter(
         <Route path="premier" element={<Premier />} />
         <Route path="payment-success" element={<PaymentSuccess />} />
         <Route path="payment-cancel" element={<PaymentCancel />} />
+        <Route path="records" element={<PatientsRecords />} />
         {/* <Route path="chatbot" element={<RetellAi />} /> */}
       </Route>
     </Route>

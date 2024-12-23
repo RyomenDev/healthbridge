@@ -14,8 +14,8 @@ const HomePage = () => {
           Health<span className="text-yellow-300">Bridge</span>
         </div>
         <p className="text-lg font-medium max-w-md text-center">
-          A <span className="italic">bridge</span> between patients and
-          hospitals for better healthcare.
+          A <span className="italic">bridge</span> between patients and doctors
+          for better healthcare.
         </p>
       </div>
 
