@@ -37,10 +37,17 @@ const Header = () => {
     <header className="sticky top-0 left-0 w-full z-50 flex flex-wrap justify-between items-center py-4 px-6 bg-blue-50 shadow-lg border-b-4 border-blue-200">
       {/* Logo Section */}
       <div
-        className="flex items-center w-auto justify-start cursor-pointer"
+        className="flex items-center justify-start cursor-pointer hover:shadow-lg rounded-lg transition-all duration-300"
         onClick={handleLogoClick}
       >
-        <img src={logo} alt="HealthBridge" className="w-auto h-12 md:h-16" />
+        <img
+          src={logo}
+          alt="HealthBridge"
+          className="w-auto h-12 md:h-16 transition-transform duration-300 hover:scale-105"
+        />
+        <div className="ml-2 text-2xl font-semibold text-gray-800 md:text-3xl hover:text-indigo-600 transition-all duration-300">
+          HealthBridge
+        </div>
       </div>
 
       {/* Hamburger Icon (Mobile) */}

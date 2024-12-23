@@ -72,22 +72,30 @@ const PatientsList = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-semibold text-gray-800 mb-4">Patients</h1>
+    <div className="p-6 bg-gradient-to-r from-blue-50 via-blue-100 to-blue-200 min-h-screen">
+      <h1 className="text-4xl font-semibold text-gray-800 mb-6 text-center tracking-tight">
+        Patients Management
+      </h1>
 
+      {/* Add Button */}
       {!isDetailsVisible && !isFormVisible && (
-        <>
+        <div className="mb-8 flex justify-between items-center">
           <button
             onClick={handleAddClick}
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
           >
-            Add Patient
+            + Add Patient
           </button>
+        </div>
+      )}
 
-          <h2 className="text-2xl font-semibold text-gray-700 mt-8">
+      {/* Patients List */}
+      {!isDetailsVisible && !isFormVisible && (
+        <>
+          <h2 className="text-2xl font-semibold text-gray-700 mb-6">
             Patients List
           </h2>
-          <ul className="mt-4 space-y-4">
+          <ul className="space-y-6">
             {patients.map((patient) => (
               <PatientItem
                 key={patient._id}
@@ -107,24 +115,28 @@ const PatientsList = () => {
 
       {/* Patient Details View */}
       {isDetailsVisible && selectedPatient && (
-        <PatientDetails
-          patient={selectedPatient}
-          onEditClick={() => {
-            setIsFormVisible(true);
-            setIsDetailsVisible(false);
-          }}
-          onDelete={handleDelete}
-          onBack={handleBackToList}
-        />
+        <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mb-6">
+          <PatientDetails
+            patient={selectedPatient}
+            onEditClick={() => {
+              setIsFormVisible(true);
+              setIsDetailsVisible(false);
+            }}
+            onDelete={handleDelete}
+            onBack={handleBackToList}
+          />
+        </div>
       )}
 
       {/* Patient Form for Adding or Editing */}
       {isFormVisible && (
-        <PatientForm
-          selectedPatient={selectedPatient}
-          onPatientSave={handlePatientSave}
-          onCancel={() => setIsFormVisible(false)}
-        />
+        <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mb-6">
+          <PatientForm
+            selectedPatient={selectedPatient}
+            onPatientSave={handlePatientSave}
+            onCancel={() => setIsFormVisible(false)}
+          />
+        </div>
       )}
     </div>
   );
