@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { createPatient, updatePatient } from "../../api/index";
 import { handleApiError } from "../../utils/handleApiError";
 import { patientFormData } from "../../Data/patientFormData";
+import { useNavigate } from "react-router-dom";
 
 const PatientForm = ({ selectedPatient, onPatientSave, onCancel }) => {
   const {
@@ -13,6 +14,9 @@ const PatientForm = ({ selectedPatient, onPatientSave, onCancel }) => {
     formState: { errors },
   } = useForm();
   const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // State for loading
+  const [formError, setFormError] = useState(""); // State to manage error messages
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (selectedPatient) {
@@ -28,16 +32,23 @@ const PatientForm = ({ selectedPatient, onPatientSave, onCancel }) => {
   }, [selectedPatient, reset, setValue]);
 
   const onSubmit = async (data) => {
+    setIsLoading(true); // Set loading to true on submit
+    setFormError(""); // Reset any previous errors
     try {
       if (isEditing) {
-        await updatePatient(selectedPatient._id, data);
+        await updatePatient(selectedPatient._id, data, navigate);
       } else {
-        await createPatient(data);
+        await createPatient(data, navigate);
       }
       onPatientSave();
-      reset();
+      reset(); // Reset form after successful submission
     } catch (error) {
+      setFormError(
+        "An error occurred while saving the patient details. Please try again."
+      );
       handleApiError(error);
+    } finally {
+      setIsLoading(false); // Set loading to false after API call
     }
   };
 
@@ -85,13 +96,24 @@ const PatientForm = ({ selectedPatient, onPatientSave, onCancel }) => {
         </div>
       ))}
 
+      {formError && (
+        <div className="text-red-600 text-sm mt-4">{formError}</div>
+      )}
+
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-between mt-6">
         <button
           type="submit"
           className="submit-button w-full sm:w-1/2 py-3 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-all duration-200"
+          disabled={isLoading} // Disable button during loading
         >
-          {isEditing ? "Update Patient" : "Create Patient"}
+          {isLoading ? (
+            <span className="spinner-border animate-spin">Submitting...</span>
+          ) : isEditing ? (
+            "Update Patient"
+          ) : (
+            "Create Patient"
+          )}
         </button>
         <button
           type="button"

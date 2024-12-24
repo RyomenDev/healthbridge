@@ -13,18 +13,21 @@ const PatientItem = ({ patient, onViewDetails, onEditClick, onDelete }) => {
         <button
           onClick={() => onViewDetails(patient)}
           className="w-full md:w-auto px-4 py-2 text-blue-600 border border-blue-600 rounded-md hover:bg-blue-600 hover:text-white transition duration-200 ease-in-out"
+          aria-label={`View details of ${patient.name}`}
         >
           View Details
         </button>
         <button
-          onClick={onEditClick}
+          onClick={() => onEditClick(patient)}
           className="w-full md:w-auto px-4 py-2 text-yellow-600 border border-yellow-600 rounded-md hover:bg-yellow-600 hover:text-white transition duration-200 ease-in-out"
+          aria-label={`Edit ${patient.name}'s details`}
         >
           Edit
         </button>
         <button
           onClick={() => onDelete(patient._id)}
           className="w-full md:w-auto px-4 py-2 text-red-600 border border-red-600 rounded-md hover:bg-red-600 hover:text-white transition duration-200 ease-in-out"
+          aria-label={`Delete ${patient.name}`}
         >
           Delete
         </button>

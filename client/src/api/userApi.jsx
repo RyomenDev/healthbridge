@@ -7,7 +7,7 @@ const SERVER_API_URL = conf.SERVER_API_URL;
 const API_URL = `${SERVER_API_URL}/user`;
 
 // Function to fetch user profile data
-export const fetchUserProfile = async () => {
+export const fetchUserProfile = async (navigate) => {
   try {
     const headers = await getHeaders();
     const response = await axios.get(`${API_URL}/profile`, {
@@ -15,12 +15,12 @@ export const fetchUserProfile = async () => {
     });
     return response.data.user;
   } catch (error) {
-    handleApiError(error);
+    handleApiError(error, navigate);
   }
 };
 
 // Function to update user profile
-export const updateUserProfile = async (userData) => {
+export const updateUserProfile = async (userData, navigate) => {
   try {
     const headers = await getHeaders();
     const response = await axios.put(`${API_URL}/update-profile`, userData, {
@@ -28,7 +28,7 @@ export const updateUserProfile = async (userData) => {
     });
     return response.data;
   } catch (error) {
-    handleApiError(error);
+    handleApiError(error, navigate);
   }
 };
 

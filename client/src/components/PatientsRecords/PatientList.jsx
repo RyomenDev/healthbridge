@@ -4,47 +4,59 @@ import PatientItem from "./PatientItem";
 import { handleApiError } from "../../utils/handleApiError";
 import PatientDetails from "./PatientDetails";
 import PatientForm from "./PatientForm";
+import { useNavigate } from "react-router-dom";
 
 const PatientsList = () => {
   const [patients, setPatients] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [isDetailsVisible, setIsDetailsVisible] = useState(false);
+  const [loading, setLoading] = useState(false); // Added loading state
+  const [error, setError] = useState(null); // Added error state
+  const navigate = useNavigate();
 
   // Fetch patients for the doctor
   useEffect(() => {
     const fetchPatients = async () => {
+      setLoading(true); // Set loading true when fetching
+      setError(null); // Clear previous errors
       try {
-        const patientsData = await getPatientsByDoctor();
+        const patientsData = await getPatientsByDoctor(navigate);
         setPatients(patientsData);
       } catch (error) {
-        handleApiError(error);
+        setError("Failed to load patients. Please try again later.");
+        handleApiError(error, navigate);
+      } finally {
+        setLoading(false); // Set loading false after fetching
       }
     };
 
     fetchPatients();
-  }, []);
+  }, [navigate]);
 
   // Handle patient delete
   const handleDelete = async (patientId) => {
     try {
-      await deletePatient(patientId);
+      await deletePatient(patientId, navigate);
       setPatients(patients.filter((patient) => patient._id !== patientId));
       if (isFormVisible) setIsFormVisible(false);
     } catch (error) {
-      handleApiError(error);
+      handleApiError(error, navigate);
     }
   };
 
   // Callback to refresh patient list after save
   const handlePatientSave = () => {
     const fetchPatients = async () => {
+      setLoading(true); // Set loading true when fetching
       try {
-        const patientsData = await getPatientsByDoctor();
+        const patientsData = await getPatientsByDoctor(navigate);
         setPatients(patientsData);
         setIsFormVisible(false);
       } catch (error) {
-        handleApiError(error);
+        handleApiError(error, navigate);
+      } finally {
+        setLoading(false); // Set loading false after fetching
       }
     };
     fetchPatients();
@@ -89,29 +101,56 @@ const PatientsList = () => {
         </div>
       )}
 
-      {/* Patients List */}
-      {!isDetailsVisible && !isFormVisible && (
-        <>
-          <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 mb-6">
-            Patients List
-          </h2>
-          <ul className="space-y-4 sm:space-y-6">
-            {patients.map((patient) => (
-              <PatientItem
-                key={patient._id}
-                patient={patient}
-                onViewDetails={handleViewDetails}
-                onEditClick={() => {
-                  setSelectedPatient(patient);
-                  setIsFormVisible(true);
-                  setIsDetailsVisible(false);
-                }}
-                onDelete={handleDelete}
-              />
-            ))}
-          </ul>
-        </>
+      {/* Loading Indicator */}
+      {loading && (
+        <div className="text-center text-xl font-semibold text-gray-700">
+          Loading patients...
+        </div>
       )}
+
+      {/* Error Message */}
+      {error && (
+        <div className="text-center text-xl font-semibold text-red-600 mb-6">
+          {error}
+        </div>
+      )}
+
+      {/* Patients List */}
+      {!isDetailsVisible &&
+        !isFormVisible &&
+        !loading &&
+        patients.length > 0 && (
+          <>
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 mb-6">
+              Patients List
+            </h2>
+            <ul className="space-y-4 sm:space-y-6">
+              {patients.map((patient) => (
+                <PatientItem
+                  key={patient._id}
+                  patient={patient}
+                  onViewDetails={handleViewDetails}
+                  onEditClick={() => {
+                    setSelectedPatient(patient);
+                    setIsFormVisible(true);
+                    setIsDetailsVisible(false);
+                  }}
+                  onDelete={handleDelete}
+                />
+              ))}
+            </ul>
+          </>
+        )}
+
+      {/* No Patients Found */}
+      {!isDetailsVisible &&
+        !isFormVisible &&
+        !loading &&
+        patients.length === 0 && (
+          <div className="text-center text-xl font-semibold text-gray-700">
+            No patients found.
+          </div>
+        )}
 
       {/* Patient Details View */}
       {isDetailsVisible && selectedPatient && (

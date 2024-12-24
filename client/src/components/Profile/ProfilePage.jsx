@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { fetchUserProfile, updateUserProfile } from "../../api/index";
 import ProfileForm from "./ProfileForm";
 import ProfileDetails from "./ProfileDetails";
+import { useNavigate } from "react-router-dom";
+import { handleApiError } from "../../utils/handleApiError";
 
 const ProfilePageMain = () => {
   const [userData, setUserData] = useState({
@@ -11,22 +13,25 @@ const ProfilePageMain = () => {
     gender: "",
     address: "",
     phone: "",
+    picture: "", // Profile picture if available
   });
   const [errors, setErrors] = useState({});
   const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();
 
   // Fetch user data on component mount
   useEffect(() => {
     const getUserProfile = async () => {
       try {
-        const data = await fetchUserProfile();
+        const data = await fetchUserProfile(navigate);
         setUserData(data);
       } catch (error) {
-        console.error("Error fetching user profile", error);
+          console.error("Error fetching user profile", error);
+          handleApiError(error, navigate);
       }
     };
     getUserProfile();
-  }, []);
+  }, [navigate]);
 
   // Validate input fields
   const validateField = (name, value) => {
@@ -86,7 +91,7 @@ const ProfilePageMain = () => {
     }
 
     try {
-      const updatedData = await updateUserProfile(userData);
+      const updatedData = await updateUserProfile(userData, navigate);
       console.log("Profile updated successfully:", updatedData);
       setIsEditing(false);
     } catch (error) {

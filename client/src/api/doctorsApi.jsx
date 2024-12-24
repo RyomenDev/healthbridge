@@ -7,7 +7,7 @@ const SERVER_API_URL = conf.SERVER_API_URL;
 const API_URL = `${SERVER_API_URL}/records`;
 
 // Create a new patient
-export const createPatient = async (patientData) => {
+export const createPatient = async (patientData, navigate) => {
   //   console.log(patientData);
   try {
     const headers = await getHeaders();
@@ -17,12 +17,12 @@ export const createPatient = async (patientData) => {
     // console.log(response);
     return response.data;
   } catch (error) {
-    handleApiError(error);
+    handleApiError(error, navigate);
   }
 };
 
 // Get all patients for a specific doctor
-export const getPatientsByDoctor = async () => {
+export const getPatientsByDoctor = async (navigate) => {
   //   console.log("FETCHING Patient");
   try {
     const headers = await getHeaders();
@@ -32,12 +32,12 @@ export const getPatientsByDoctor = async () => {
     // console.log(response.data);
     return response.data;
   } catch (error) {
-    handleApiError(error);
+    handleApiError(error, navigate);
   }
 };
 
 // Update a specific patient's details
-export const updatePatient = async (patientId, updatedData) => {
+export const updatePatient = async (patientId, updatedData, navigate) => {
   //   console.log("updating-patient");
   try {
     const headers = await getHeaders();
@@ -48,12 +48,12 @@ export const updatePatient = async (patientId, updatedData) => {
     );
     return response.data;
   } catch (error) {
-    handleApiError(error);
+    handleApiError(error, navigate);
   }
 };
 
 // Delete a specific patient
-export const deletePatient = async (patientId) => {
+export const deletePatient = async (patientId, navigate) => {
   try {
     const headers = await getHeaders();
     const response = await axios.delete(`${API_URL}/patients/${patientId}`, {
@@ -61,7 +61,7 @@ export const deletePatient = async (patientId) => {
     });
     return response.data;
   } catch (error) {
-    handleApiError(error);
+    handleApiError(error, navigate);
   }
 };
 

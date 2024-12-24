@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useStripe } from "@stripe/react-stripe-js";
 import { createPaymentIntent } from "../api/index.jsx";
 import PremiumData from "../Data/PremiumData.jsx";
+import { useNavigate } from "react-router-dom";
+import { handleApiError } from "../utils/handleApiError";
 
 const { IMAGES, FEATURES } = PremiumData;
 
@@ -10,6 +12,7 @@ function PaymentPage() {
   const [loading, setLoading] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState(null);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,7 +20,7 @@ function PaymentPage() {
     setError(null);
 
     try {
-      const response = await createPaymentIntent(100);
+      const response = await createPaymentIntent(100, navigate);
       const { url } = response.data;
 
       if (url) {
@@ -26,6 +29,8 @@ function PaymentPage() {
         throw new Error("Failed to get checkout URL");
       }
     } catch (error) {
+      // Use the handleApiError function to handle the error
+      handleApiError(error, navigate);
       setPaymentStatus("Failed");
       setError("An error occurred. Please try again later.");
     } finally {

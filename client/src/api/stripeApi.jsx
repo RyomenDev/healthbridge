@@ -6,7 +6,7 @@ import { getHeaders } from "../utils/authUtils";
 const SERVER_API_URL = conf.SERVER_API_URL;
 const API_URL = `${SERVER_API_URL}/premier`;
 
-const createPaymentIntent = async (amount) => {
+const createPaymentIntent = async (amount, navigate) => {
   try {
     const headers = await getHeaders();
 
@@ -21,7 +21,7 @@ const createPaymentIntent = async (amount) => {
     if (response) return response;
     throw new Error("Failed to create payment intent");
   } catch (error) {
-    handleApiError(error); // Handle any API errors
+    handleApiError(error, navigate); // Handle any API errors
   }
 };
 

@@ -4,9 +4,12 @@ import { router } from "./routes";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor } from "./store/store.js";
 import { Provider, useDispatch } from "react-redux";
-import { LoginUser } from "./api/index";
 import store from "./store/store.js";
+import { LoginUser } from "./api/index";
 import { login } from "./store/authSlice";
+// import { useNavigate } from "react-router-dom";
+// const navigate = useNavigate();
+// navigate;
 
 function App() {
   const dispatch = useDispatch();

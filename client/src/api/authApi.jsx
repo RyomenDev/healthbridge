@@ -7,7 +7,7 @@ const SERVER_API_URL = conf.SERVER_API_URL;
 const API_URL = `${SERVER_API_URL}/auth`;
 
 // Function to call the protected API
-export const LoginUser = async () => {
+export const LoginUser = async (navigate) => {
   try {
     const headers = await getHeaders();
     const response = await axios.post(
@@ -19,6 +19,6 @@ export const LoginUser = async () => {
     );
     return response.data; // Return the response data
   } catch (error) {
-    handleApiError(error);
+    handleApiError(error, navigate);
   }
 };

@@ -6,7 +6,7 @@ import { getHeaders } from "../utils/authUtils";
 const SERVER_API_URL = conf.SERVER_API_URL;
 const API_URL = `${SERVER_API_URL}/retellai`;
 
-export const registerCall = async (RETELL_AI_AGENT_ID) => {
+export const registerCall = async (RETELL_AI_AGENT_ID, navigate) => {
   try {
     const headers = await getHeaders();
 
@@ -23,6 +23,6 @@ export const registerCall = async (RETELL_AI_AGENT_ID) => {
     // Axios response data is automatically parsed
     return response.data;
   } catch (error) {
-    handleApiError(error);
+    handleApiError(error, navigate);
   }
 };

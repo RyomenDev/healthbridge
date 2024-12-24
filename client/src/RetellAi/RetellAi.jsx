@@ -3,6 +3,8 @@ import { RetellWebClient } from "retell-client-js-sdk";
 import conf from "../conf/retellAi-conf.jsx";
 import { registerCall } from "../api/index.jsx";
 import { FaPhoneAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { handleApiError } from "../utils/handleApiError";
 
 import activeBot from "../assets/activeBot.png";
 import inActiveBot from "../assets/inActiveBot.png";
@@ -12,6 +14,7 @@ const retellWebClient = new RetellWebClient();
 
 const RetellAi = () => {
   const [isCalling, setIsCalling] = useState(false);
+  const navigate = useNavigate();
 
   // Initialize the SDK
   useEffect(() => {
@@ -57,23 +60,42 @@ const RetellAi = () => {
 
     retellWebClient.on("error", (error) => {
       console.error("An error occurred:", error);
-      // OTHER EFFECTS
+      // Handle errors with custom handler
+      handleApiError(error, navigate);
+      // Stop call in case of error
       retellWebClient.stopCall();
     });
   }, []);
 
   const toggleConversation = async () => {
     if (isCalling) {
+      // Stop the call if it is active
       retellWebClient.stopCall();
+      setIsCalling(false);
     } else {
-      const registerCallResponse = await registerCall(RETELL_AI_AGENT_ID);
-      if (registerCallResponse.access_token) {
-        retellWebClient
-          .startCall({
-            accessToken: registerCallResponse.access_token,
-          })
-          .catch(console.error);
-        setIsCalling(true);
+      try {
+        // Register the call and get the access token
+        const registerCallResponse = await registerCall(
+          RETELL_AI_AGENT_ID,
+          navigate
+        );
+
+        if (registerCallResponse.access_token) {
+          // Start the call with the access token
+          await retellWebClient
+            .startCall({
+              accessToken: registerCallResponse.access_token,
+            })
+            .catch((error) => {
+              // Handle errors related to starting the call
+              handleApiError(error, navigate);
+            });
+
+          setIsCalling(true);
+        }
+      } catch (error) {
+        // Handle API errors during call registration
+        handleApiError(error, navigate);
       }
     }
   };
