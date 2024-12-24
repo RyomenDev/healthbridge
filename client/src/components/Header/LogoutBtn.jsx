@@ -13,8 +13,8 @@ function LogoutBtn() {
 
       // Clear localStorage, sessionStorage, and any other tokens
       localStorage.removeItem("user");
-      localStorage.removeItem("token");
-      sessionStorage.removeItem("token");
+      localStorage.removeItem("firebase_token");
+      sessionStorage.removeItem("firebase_token");
 
       // Dispatch Redux logout action
       dispatch(logout());
