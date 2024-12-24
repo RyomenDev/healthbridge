@@ -26,8 +26,8 @@ const ProfilePageMain = () => {
         const data = await fetchUserProfile(navigate);
         setUserData(data);
       } catch (error) {
-          console.error("Error fetching user profile", error);
-          handleApiError(error, navigate);
+        console.error("Error fetching user profile", error);
+        handleApiError(error, navigate);
       }
     };
     getUserProfile();
