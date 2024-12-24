@@ -3,17 +3,18 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import admin from "./conf/firebase-admin-config.js";
+import conf from "./conf/conf.js";
 
 const app = express();
 app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN
-      ? process.env.CORS_ORIGIN.replace(/\/$/, "")
-      : "http://localhost:5173",
+    origin: conf.CORS_ORIGIN.replace(/\/$/, ""),
+    //   ? conf.CORS_ORIGIN.replace(/\/$/, "")
+    //   : "http://localhost:5173",
     credentials: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], 
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   })
 );
 
