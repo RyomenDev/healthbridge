@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
+import ErrorBoundary from "./utils/ErrorBoundary.jsx";
 // import Login from "./components/Login";
 
 // import axios from "axios";
@@ -20,10 +21,12 @@ import store from "./store/store.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Provider store={store}>
-      <App />
-      {/* <button onClick={handleTesting}>handleTesting</button>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <App />
+        {/* <button onClick={handleTesting}>handleTesting</button>
       <Login /> */}
-    </Provider>
+      </Provider>
+    </ErrorBoundary>
   </StrictMode>
 );
