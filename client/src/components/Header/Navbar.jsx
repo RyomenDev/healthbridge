@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LogoutBtn from "./LogoutBtn";
-import { navItems, authItems } from "../../Data/navBarData"; 
+import { navItems, authItems } from "../../Data/navBarData";
 
 const NavBar = ({ logo, setIsNavbarOpen }) => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const NavBar = ({ logo, setIsNavbarOpen }) => {
   const userName = userData?.name;
 
   return (
-    <div className="flex flex-col items-start p-4 space-y-4">
+    <div className="flex flex-col items-start px-4 py-2">
       {/* Close Button */}
       <button
         onClick={() => setIsNavbarOpen(false)}
@@ -19,11 +19,7 @@ const NavBar = ({ logo, setIsNavbarOpen }) => {
       >
         &times;
       </button>
-      <img
-        src={logo}
-        alt="Apollo Hospitals Logo"
-        className="w-auto h-12 md:h-16"
-      />
+      <img src={logo} alt="Hospitals Logo" className="w-auto h-12 md:h-16" />
       <div className="text-2xl font-semibold black">
         Hello, {userName || "Guest"}
       </div>
@@ -39,7 +35,7 @@ const NavBar = ({ logo, setIsNavbarOpen }) => {
                   setIsNavbarOpen(false); // Close menu on link click
                   navigate(item.slug);
                 }}
-                className="px-6 rounded-lg text-lg font-medium hover:bg-blue-500 hover:text-white transition duration-300"
+                className="px-6 py-2 rounded-lg text-lg font-medium hover:bg-blue-500 hover:text-white transition duration-300"
               >
                 {item.name}
               </button>
