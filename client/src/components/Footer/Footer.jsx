@@ -1,4 +1,4 @@
-import HomeData from "../../Data/MainData";
+import HomeData from "../../Data/MainData.jsx";
 
 const Footer = () => {
   const { footer } = HomeData;

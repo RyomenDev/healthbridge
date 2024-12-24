@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import Navbar from "./NavBar";
-import HomeData from "../../Data/MainData";
+import Navbar from "./Navbar.jsx";
+import HomeData from "../../Data/MainData.jsx";
 
 const Header = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
