@@ -5,7 +5,7 @@ const stripe = Stripe(conf.STRIPE_SECRET_KEY);
 
 // console.log("payment controller");
 
-const YOUR_DOMAIN = "http://localhost:5173"; // Replace with your actual domain
+const YOUR_DOMAIN = conf.CORS_ORIGIN; 
 
 const userPayment = async (req, res) => {
   const { amount } = req.body;
