@@ -12,6 +12,7 @@ import PaymentSuccess from "../Stripe/PaymentSuccess.jsx";
 import PaymentCancel from "../Stripe/PaymentCancel";
 import PatientsRecords from "../pages/PatientsRecords";
 // import RetellAi from "../RetellAi/RetellAIConnect";
+import ProtectedNeedLogin from "../pages/ProtectedNeedLogin.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
         <Route path="payment-cancel" element={<PaymentCancel />} />
         <Route path="records" element={<PatientsRecords />} />
         {/* <Route path="chatbot" element={<RetellAi />} /> */}
+        <Route path="/protected" element={<ProtectedNeedLogin />} />
       </Route>
     </Route>
   )

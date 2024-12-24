@@ -9,6 +9,7 @@ const API_URL = `${SERVER_API_URL}/premier`;
 const createPaymentIntent = async (amount) => {
   try {
     const headers = await getHeaders();
+
     const response = await axios.post(
       `${API_URL}/create-payment-intent`,
       { amount },
